@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1" author="aeliseev">
+        <createTable tableName="person">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="firstname" type="varchar"/>
+            <column name="lastname" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="varchar(2)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="aeliseev">
+        <addColumn tableName="person">
+            <column name="username" type="varchar"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="3" author="aeliseev">
+        <insert tableName="person">
+            <column name="id" value="1" />
+            <column name="firstname" value="Gugo" />
+            <column name="lastname" value="Zapanski" />
+            <column name="state" value="CA" />
+            <column name="username" value="gzapanski" />
+        </insert>
+        <insert tableName="person">
+            <column name="id" value="2" />
+            <column name="firstname" value="Niclaus" />
+            <column name="lastname" value="Hiedelsdottir" />
+            <column name="state" value="IS" />
+            <column name="username" value="nhiedelsdottir" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

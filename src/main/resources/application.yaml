@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: '@project.artifactId@'
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://database-demo.c9gseq88wjfk.eu-north-1.rds.amazonaws.com:5432/aeliseev
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        jdbc.time_zone: UTC
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.xml

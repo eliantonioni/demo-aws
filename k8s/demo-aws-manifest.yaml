@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo-aws
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-aws
+  namespace: "demo-aws"
+  labels:
+    app: demo-aws
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-aws
+  template:
+    metadata:
+      labels:
+        app: demo-aws
+    spec:
+      containers:
+        - image: eliantonioni/demo-aws
+          imagePullPolicy: IfNotPresent
+          name: demo-aws
+          ports:
+            - containerPort: 8080
+              name: http
+            - containerPort: 5005
+              name: debug
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-aws
+  namespace: "demo-aws"
+spec:
+  selector:
+    app: demo-aws
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort: 8080
+      name: http
+  type: LoadBalancer
