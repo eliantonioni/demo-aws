@@ -37,3 +37,5 @@ build/
 /repository.tar.gz
 /.kuberlr/
 /.mvn/
+/terraform/.terraform/
+/terraform/.terraform.lock.hcl
