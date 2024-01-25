@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: postgres-create-db
+spec:
+  ttlSecondsAfterFinished: 120
+  template:
+    spec:
+      containers:
+        - name: create-db
+          image: bitnami/postgresql:latest
+          command: ["createdb"]
+          args: ["-h", "pg-demo-aws-postgresql.demo-aws.svc.cluster.local", "-U", "postgres", "aeliseev"]
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-demo-aws-postgresql
+                  key: postgres-password
+      restartPolicy: Never

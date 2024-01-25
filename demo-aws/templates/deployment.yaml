@@ -35,3 +35,9 @@ spec:
             httpGet:
               path: /actuator/health/readiness
               port: http-port
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-demo-aws-postgresql
+                  key: postgres-password
