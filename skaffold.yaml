@@ -1,0 +1,19 @@
+apiVersion: skaffold/v4beta9
+kind: Config
+metadata:
+  name: demo-aws
+build:
+  artifacts:
+    - image: eliantonioni/demo-aws
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: false
+deploy:
+  helm:
+    releases:
+      - name: demo-aws
+        chartPath: demo-aws
+        valuesFiles:
+          - demo-aws/values.yaml
+        version: 0.1.0

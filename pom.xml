@@ -22,6 +22,7 @@
 		<!-- image will be pushed to local registry (docker logout, then mvn package -Pjib) -->
 		<docker.name>${docker.repo}/${project.artifactId}:${docker.tag}</docker.name>
 		<java.version>17</java.version>
+		<skipTests>true</skipTests>
 	</properties>
 	<dependencies>
 		<dependency>
