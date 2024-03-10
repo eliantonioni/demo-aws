@@ -5,6 +5,8 @@ kubectl get pvc postgres-pv-claim
 
 helm install pg-demo-aws bitnami/postgresql --set persistence.existingClaim=postgres-pv-claim --set volumePermissions.enabled=true
 helm uninstall pg-demo-aws
+
+# before running the job - ensure that all previous steps were done in demo-aws namespace, otherwise job will fail
 kubectl apply -f pg-k8s/pg-create-db-job.yaml
 
 # to connect from outside the cluster need port forwarding  
